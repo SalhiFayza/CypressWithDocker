@@ -1,23 +1,29 @@
 const { defineConfig } = require("cypress");
-const cucumber = require('cypress-cucumber-preprocessor').default
+const cucumber = require("cypress-cucumber-preprocessor").default;
 
 module.exports = defineConfig({
-    pageLoadTimeout: 60000,
+  pageLoadTimeout: 60000,
   chromeWebSecurity: false,
 
-  e2e: {
-          baseUrl:'https://automationexercise.com',
-
-    setupNodeEvents(on, config) {
-      screenshotOnRunFailure = true;
-      require('cypress-mochawesome-reporter/plugin')(on),
-        // implement node event listeners here
-        on('file:preprocessor', cucumber())
-    },
-    specPattern: "cypress/e2e/features/**/*.feature",
-    excludeSpecPattern: '**/*.{js,ts}',
-
+  reporter: "cypress-mochawesome-reporter",
+  reporterOptions: {
+    reportDir: "cypress/reports/html",
+    overwrite: false,
+    html: false,
+    json: true
   },
 
+  e2e: {
+    baseUrl: "https://automationexercise.com",
 
+    setupNodeEvents(on, config) {
+      require("cypress-mochawesome-reporter/plugin")(on);
+      on("file:preprocessor", cucumber());
+
+      return config;
+    },
+
+    specPattern: "cypress/e2e/features/**/*.feature",
+    excludeSpecPattern: "**/*.{js,ts}",
+  },
 });
