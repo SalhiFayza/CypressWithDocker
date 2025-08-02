@@ -1,0 +1,22 @@
+stages:
+  - build
+  - Test
+build-job:
+  stage: build
+  script:
+    - echo "Compliling the code..."
+    - echo "Compile complete."
+
+test_features_Welcome:
+  image: cypress/browsers:node18.12.0-chrome107
+  stage: Test
+  script:
+    - npm ci
+    - npm install cypress-mochawesome-reporter
+    - npm run cy:run
+
+  artifacts:
+    when: always
+    paths:
+      - cypress/reports/**
+      - cypress/screenshots/**/*.png
