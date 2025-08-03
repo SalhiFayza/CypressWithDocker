@@ -79,26 +79,35 @@ docker run --rm -v $PWD:/app -w /app cypress-tests
 ### `cypress.config.js`
 
 ```js
-module.exports = {
-  e2e: {
-    baseUrl: "https://automationexercise.com",
-    specPattern: "cypress/e2e/features/**/*.feature",
-    supportFile: "cypress/support/index.js",
-    screenshotsFolder: "cypress/screenshots",
-    videosFolder: "cypress/videos"
-  },
+module.exports = defineConfig({
+  pageLoadTimeout: 60000,
+  chromeWebSecurity: false,
+
   reporter: "cypress-mochawesome-reporter",
   reporterOptions: {
     reportDir: "cypress/reports/html",
     overwrite: false,
-    html: true,
+    html: true,           
     json: true,
-    embeddedScreenshots: true,
-    inlineAssets: true
+    embeddedScreenshots: true, 
+    inlineAssets: true          
   },
-  chromeWebSecurity: false,
-  pageLoadTimeout: 60000
-};
+
+  e2e: {
+    baseUrl: "https://automationexercise.com",
+
+    setupNodeEvents(on, config) {
+      require("cypress-mochawesome-reporter/plugin")(on);
+      on("file:preprocessor", cucumber());
+
+      return config;
+    },
+
+    specPattern: "cypress/e2e/features/**/*.feature",
+    excludeSpecPattern: "**/*.{js,ts}",
+    screenshotsFolder: "cypress/screenshots",
+  },
+});
 ```
 ## 🧪 GitHub Actions CI
 
