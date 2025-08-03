@@ -1,4 +1,4 @@
-# ✅ Cypress + Cucumber + Docker + GitHub Actions
+# ✅ Cypress 🌲 + Cucumber 🥒 + Docker 🐬 + GitHub Actions
 
 End-to-end (E2E) test automation framework using:
 
