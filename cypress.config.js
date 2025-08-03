@@ -9,8 +9,10 @@ module.exports = defineConfig({
   reporterOptions: {
     reportDir: "cypress/reports/html",
     overwrite: false,
-    html: true,
-    json: false
+    html: true,           
+    json: true,
+    embeddedScreenshots: true, 
+    inlineAssets: true          
   },
 
   e2e: {
@@ -25,5 +27,6 @@ module.exports = defineConfig({
 
     specPattern: "cypress/e2e/features/**/*.feature",
     excludeSpecPattern: "**/*.{js,ts}",
+    screenshotsFolder: "cypress/screenshots",
   },
 });
