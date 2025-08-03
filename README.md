@@ -100,62 +100,6 @@ module.exports = {
   pageLoadTimeout: 60000
 };
 ```
-
----
-
-## 🔌 Plugin Setup
-
-### `cypress/plugins/index.js`
-
-```js
-const cucumber = require('cypress-cucumber-preprocessor').default;
-const mochawesome = require('cypress-mochawesome-reporter/plugin');
-
-module.exports = (on, config) => {
-  on('file:preprocessor', cucumber());
-  mochawesome(on);
-  return config;
-};
-```
-
----
-
-### `cypress/support/index.js`
-
-```js
-require('cypress-mochawesome-reporter/register');
-```
-
----
-
-## ✍️ Sample Test
-
-### `cypress/e2e/features/login.feature`
-
-```gherkin
-Feature: Login Page
-
-  Scenario: Visit homepage
-    Given I visit the home page
-    Then I should see the title
-```
-
-### `cypress/e2e/features/step_definitions/loginSteps.js`
-
-```js
-const { Given, Then } = require("cypress-cucumber-preprocessor/steps");
-
-Given("I visit the home page", () => {
-  cy.visit("/");
-});
-
-Then("I should see the title", () => {
-  cy.title().should("include", "Automation Exercise");
-});
-```
-
----
-
 ## 🧪 GitHub Actions CI
 
 ### `.github/workflows/cypress-tests.yml`
@@ -240,8 +184,8 @@ CMD ["npx", "cypress", "run"]
     "cypress-mochawesome-reporter": "^3.8.1"
   },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": true,
-    "stepDefinitions": "cypress/e2e/features/step_definitions"
+    "nonGlobalStepDefinations": true,
+    "stepDefinitions": "cypress/e2e/"
   }
 }
 ```
