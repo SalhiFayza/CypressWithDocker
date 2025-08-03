@@ -206,6 +206,9 @@ CMD ["npx", "cypress", "run"]
 ISC License
 
 ---
+## Cypress artifacts and the HTML report output: 
+<img width="1283" height="603" alt="image" src="https://github.com/user-attachments/assets/8c6c1b80-9e81-4597-97e6-02d5c0f8cbcf" />
+<img width="1283" height="603" alt="image" src="https://github.com/user-attachments/assets/a1816f3a-246d-41a5-90f6-e726ca555bed" />
 
 ## 👤 Author
 
